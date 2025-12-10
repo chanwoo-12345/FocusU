@@ -12,31 +12,26 @@ const fortunes = [
 ];
 
 
-function createCards() {
-app.innerHTML = "";
-for (let i = 0; i < 5; i++) {
-const card = document.createElement("div");
-card.className = "tarot-card";
-card.innerHTML = `<div class="back"></div><div class="front">🌟</div>`;
+const cardImages = [
+  './assets/card1.png',
+  './assets/card2.png',
+  './assets/card3.png',
+  './assets/card4.png',
+  './assets/card5.png'
+];
 
+let cardDrawn = false;
 
-card.addEventListener("click", () => {
-if (document.querySelector(".tarot-card.flipped")) return; // 다른 카드 달성시 도출
-card.classList.add("flipped");
-showFortune();
-});
-app.appendChild(card);
+function drawCard(cardElement) {
+  if (cardDrawn) return; // 한 장만 뽑을 수 있음
+  cardDrawn = true;
+
+  // 카드 앞면 이미지 (샘플 이미지로 대체)
+  cardElement.classList.add('flipped');
+  cardElement.style.backgroundImage = "url('https://i.imgur.com/ME1r7jz.png')"; // 앞면 임시 이미지
+
+  // 운세 텍스트 표시
+  const message = document.getElementById("fortuneMessage");
+  const randomIndex = Math.floor(Math.random() * fortunes.length);
+  message.textContent = "💬 " + fortunes[randomIndex];
 }
-}
-
-
-function showFortune() {
-const bubble = document.createElement("div");
-bubble.className = "fortune-message";
-const random = fortunes[Math.floor(Math.random() * fortunes.length)];
-bubble.innerText = random;
-app.appendChild(bubble);
-}
-
-
-createCards();
