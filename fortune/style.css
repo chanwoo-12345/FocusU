@@ -1,32 +1,51 @@
-
 body {
   margin: 0;
-  font-family: 'Pretendard', sans-serif;
-  background: linear-gradient(to bottom, #0f172a, #1e293b, #000000);
-  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(ellipse at center, #1e2a38 0%, #111927 100%);
+  color: #ffffff;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: start;
-  min-height: 100vh;
-  padding: 2rem;
-}
-
-main {
-  max-width: 600px;
-  width: 100%;
+  align-items: center;
+  flex-direction: column;
 }
 
 header {
-  font-size: 2rem;
-  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: white;
   text-align: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: flex;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(255,255,255,0.1);
-  backdrop-filter: blur(8px);
+  width: 140px;          /* 기존 100px → 더 크게 */
+  height: 220px;         /* 기존 160px → 더 크게 */
+  border-radius: 12px;
+  background-image: url('https://i.imgur.com/UbVxR7G.png'); /* 뒷면 이미지 */
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.6s ease, background-image 0.6s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.fortune-message {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
