@@ -17,5 +17,18 @@
     
     <button class="login-button">로그인</button>
   </div>
+  <script>
+    function checkLogin() {
+      const id = document.getElementById('userId').value.trim();
+      const pw = document.getElementById('userPw').value.trim();
+
+      if (id === "오픈소스" && pw === "오픈소스") {
+        alert("로그인 성공! 메인 페이지로 이동합니다.");
+        window.location.href = "../main/main.html"; // main 페이지로 이동
+      } else {
+        alert("아이디 또는 비밀번호가 틀렸습니다.");
+      }
+    }
+  </script>
 </body>
 </html>
