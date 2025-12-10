@@ -1,50 +1,39 @@
 
 body {
-  margin: 0;
-  font-family: 'Pretendard', sans-serif;
   background: linear-gradient(to bottom, #0f172a, #1e293b, #000000);
   color: white;
+  font-family: 'Pretendard', sans-serif;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 2rem;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-main {
-  max-width: 600px;
-  width: 100%;
+.container {
   text-align: center;
-}
-
-header {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.card {
-  display: block;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
   border-radius: 1rem;
-  text-decoration: none;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(255,255,255,0.05);
+}
+
+input {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  margin-top: 1rem;
+  width: 70%;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #3b82f6;
   color: white;
   font-weight: bold;
-  backdrop-filter: blur(6px);
-  transition: background 0.3s;
-}
-
-.card:hover {
-  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
 }
