@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FocusU 로그인</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1 class="title">🌙 FocusU</h1>
+    <p class="subtitle">오늘 당신이 필요한 집중 도우미는?</p>
+    <form class="login-box" onsubmit="handleLogin(event)">
+      <input type="text" id="nickname" placeholder="닉네임을 입력하세요" required />
+      <button type="submit">로그인</button>
+    </form>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+      const name = document.getElementById('nickname').value;
+      if (name) {
+        localStorage.setItem('focusU_user', name);
+        window.location.href = 'main/main.html';
+      }
+    }
+  </script>
+</body>
+</html>
