@@ -1,57 +1,60 @@
-/* 전체 배경 설정 */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  background: radial-gradient(ellipse at center, #1e2a38 0%, #111927 100%);
+  color: #ffffff;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
 }
 
-/* 가운데 박스 */
-.main-box {
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 3rem;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-  width: 520px;
+.container {
   text-align: center;
 }
 
-/* 제목 */
-.main-box h1 {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
+header img {
+  width: 40px;
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
-.main-box p {
-  font-size: 1.2rem;
-  margin-bottom: 2.5rem;
-  color: #ddd;
+h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin: 0.5em 0 0.2em 0;
+  display: inline-block;
 }
 
-/* 메뉴 버튼들 */
-.menu-button {
-  display: block;
-  width: 100%;
-  padding: 1.2rem 2.4rem;
-  margin: 0.6rem 0;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 1.15rem;
-  border: none;
+p {
+  margin-top: 0;
+  margin-bottom: 2em;
+  font-size: 1.1rem;
+  color: #cfd8dc;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.menu a {
+  display: inline-block;
+  width: 250px;
+  padding: 15px 25px;
+  font-size: 1rem;
+  background-color: #2a3548;
+  color: #ffffff;
+  text-decoration: none;
   border-radius: 12px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.menu-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.menu a:hover {
+  background-color: #3c4a63;
+  transform: translateY(-2px);
 }
 
-/* 아이콘 이모지 조금 여유 있게 */
-.menu-button span {
-  margin-right: 0.5rem;
-}
