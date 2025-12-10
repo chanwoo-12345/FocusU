@@ -1,0 +1,50 @@
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background: linear-gradient(to bottom, #0f172a, #1e293b, #000000);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+main {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+header {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  display: block;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  backdrop-filter: blur(6px);
+  transition: background 0.3s;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
