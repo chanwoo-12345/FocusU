@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FocusU 로그인</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1 class="title">🌙 FocusU</h1>
+    <p class="subtitle">오늘 당신이 필요한 집중 도우미는?</p>
+    <form onsubmit="login(event)">
+  <input type="text" id="username" required placeholder="아이디를 입력하세요" />
+  <input type="password" id="password" required placeholder="비밀번호를 입력하세요" />
+  <button type="submit">로그인</button>
+</form>
+  </div>
+
+  <script>
+  function login(event) {
+    event.preventDefault(); // 폼 제출 막기
+    // 👉 로그인 성공하면 main.html로 이동
+    window.location.href = "main/main.html";
+  }
+</script>
+</body>
+</html>
