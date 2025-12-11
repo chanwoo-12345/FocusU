@@ -60,7 +60,7 @@ header {
 }
 
 .card-back {
-  background-image: url('./assets/background.png'); /* 뒷면 이미지 */
+  background-image: url('background.png'); /* 뒷면 이미지 */
 }
 
 .fortune-message {
