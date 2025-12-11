@@ -82,8 +82,12 @@ header {
 }
 
 .emoji {
-  display: block;
-  margin-top: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  height: 1.2rem;
 }
 
 .schedule-panel {
@@ -208,12 +212,4 @@ textarea {
 .close-btn:hover {
   color: rgba(255, 255, 255, 0.85);
   transform: scale(1.1);
-}
-
-.day-content {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  font-size: 1.1rem;
 }
