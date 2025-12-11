@@ -209,3 +209,11 @@ textarea {
   color: rgba(255, 255, 255, 0.85);
   transform: scale(1.1);
 }
+
+.day-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1.1rem;
+}
