@@ -6,13 +6,46 @@
   <title>Study | FocusU</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <main>
-    <header>🌙 FocusU - Study</header>
-    <section class="card">
-      <div id="app">콘텐츠 로딩 중...</div>
-    </section>
-  </main>
-  <script src="script.js"></script>
+<main>
+
+  <header>🌙 FocusU - Study</header>
+
+  <!-- 내가 추가한 사이트 -->
+  <section class="resource-section">
+    <h2 class="toggle-title">⭐ 내가 저장한 사이트</h2>
+
+    <ul id="mySitesList"></ul>
+
+    <div class="add-box">
+      <input id="siteName" type="text" placeholder="사이트 이름" />
+      <input id="siteURL" type="text" placeholder="https:// 주소" />
+      <button id="addSiteBtn">추가하기</button>
+    </div>
+  </section>
+
+  <!-- 기본 제공 사이트들 -->
+  <section class="resource-section">
+    <h2 class="toggle-title">📘 개발 강의 플랫폼</h2>
+    <ul>
+      <li><a href="https://fastcampus.co.kr" target="_blank">FastCampus</a></li>
+      <li><a href="https://inflearn.com" target="_blank">Inflearn</a></li>
+      <li><a href="https://udemy.com" target="_blank">Udemy</a></li>
+    </ul>
+  </section>
+
+  <section class="resource-section">
+    <h2 class="toggle-title">📚 공식문서 · 로드맵</h2>
+    <ul>
+      <li><a href="https://roadmap.sh" target="_blank">Roadmap.sh</a></li>
+      <li><a href="https://developer.mozilla.org" target="_blank">MDN</a></li>
+      <li><a href="https://freecodecamp.org" target="_blank">FreeCodeCamp</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<script src="study.js"></script>
 </body>
 </html>
