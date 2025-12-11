@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("cardContainer");
+  ...
+});
 const fortunes = [
   "지금 하고 있는 일에 집중해보세요.",
   "핸드폰의 유혹을 뿌리치세요.",
