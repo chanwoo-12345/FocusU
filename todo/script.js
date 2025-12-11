@@ -32,10 +32,9 @@ function renderCalendar() {
     // ✅ JSON.parse 오류 방지
     let saved = {};
     try {
-      const raw = localStorage.getItem(dateStr);
+      const raw = localStorage.getItem(getTodoKey(dateStr));
       saved = JSON.parse(raw || "{}");
-    } catch (e) {
-      console.warn(`⚠️ JSON 파싱 실패: ${dateStr}`, localStorage.getItem(dateStr));
+    } catch (e) {      
       localStorage.removeItem(dateStr);
     }
 
