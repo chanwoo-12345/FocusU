@@ -30,7 +30,7 @@ header {
   width: 140px;          /* 기존 100px → 더 크게 */
   height: 220px;         /* 기존 160px → 더 크게 */
   border-radius: 12px;
-  background-image: url('fortune/background.png.png'); /* 뒷면 이미지 */
+  background-image: url('background.png.png'); /* 뒷면 이미지 */
   background-size: cover;
   background-position: center;
   cursor: pointer;
