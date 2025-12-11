@@ -11,7 +11,8 @@ function renderCalendar() {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const today = new Date();
-  today.setHours(0, 0, 0, 0);  // 시간 제거
+  today.setHours(0, 0, 0, 0);
+
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
@@ -38,7 +39,8 @@ function renderCalendar() {
     const dateObj = new Date(year, month, day);
     const dateStr = `${year}-${month + 1}-${day}`;
     const diaryText = localStorage.getItem(dateStr);
-    const emoji = diaryText ? '📘' : '';
+    const hasDiary = diaryText && diaryText.trim() !== "";
+    const emoji = hasDiary ? '📘' : '';
 
     const dayDiv = document.createElement('div');
     dayDiv.className = 'day';
@@ -47,28 +49,70 @@ function renderCalendar() {
       <span class="emoji">${emoji}</span>
     `;
 
-    // 과거 날짜 비활성화
+    const emojiEl = dayDiv.querySelector(".emoji");
+
+    // ------------------------------
+    // 과거 날짜 처리
+    // ------------------------------
     if (dateObj < today) {
       dayDiv.classList.add('past-day');
       dayDiv.classList.add('disabled');
       dayDiv.onclick = null;
+
+      // ⭐ 과거라도 다이어리 작성된 경우 → 이모티콘 클릭하면 보기 가능
+      if (hasDiary) {
+        emojiEl.style.cursor = "pointer";
+        emojiEl.onclick = (e) => {
+          e.stopPropagation();
+          openReadOnlyModal(dateStr);
+        };
+      }
+
     } else {
-      dayDiv.onclick = () => openModal(dateStr);
+      // 미래 & 오늘 → 기존처럼 작성 가능
+      dayDiv.onclick = () => openWriteModal(dateStr);
     }
 
     calendar.appendChild(dayDiv);
   }
 }
 
-function openModal(dateStr) {
+// ------------------------------
+// 작성 가능한 모달 열기
+// ------------------------------
+function openWriteModal(dateStr) {
   selectedDate = dateStr;
   modalDate.innerText = `${dateStr}`;
-  diaryInput.value = localStorage.getItem(dateStr) || '';
-  diaryModal.style.display = 'flex';
+
+  diaryInput.value = localStorage.getItem(dateStr) || "";
+  diaryInput.readOnly = false;
+
+  document.querySelector(".modal-buttons").style.display = "flex";
+  diaryModal.style.display = "flex";
 }
 
+// ------------------------------
+// 읽기 전용 모달 (과거 작성된 일기 용)
+// ------------------------------
+function openReadOnlyModal(dateStr) {
+  selectedDate = dateStr;
+  modalDate.innerText = `${dateStr}`;
+
+  diaryInput.value = localStorage.getItem(dateStr) || "";
+  diaryInput.readOnly = true;
+
+  // 저장·삭제 버튼 숨김
+  document.querySelector(".modal-buttons").style.display = "none";
+
+  diaryModal.style.display = "flex";
+}
+
+// 닫을 때 복구
 function closeModal() {
   diaryModal.style.display = 'none';
+
+  diaryInput.readOnly = false;
+  document.querySelector(".modal-buttons").style.display = "flex";
 }
 
 function saveDiary() {
