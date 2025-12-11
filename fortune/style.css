@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(ellipse at center, #1e2a38 0%, #111927 100%);
+  background: linear-gradient(to bottom, #0f172a, #1e293b, #000000);
   color: #ffffff;
   height: 100vh;
   display: flex;
