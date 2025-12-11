@@ -7,12 +7,11 @@ let selectedTime = null;
 function renderCalendar() {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-  const today = new Date();
+  const today = new Date(); 
   today.setHours(0, 0, 0, 0);
-
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
-
+  
   calendar.innerHTML = '';
   monthYear.innerText = `${year}년 ${month + 1}월`;
 
@@ -23,17 +22,20 @@ function renderCalendar() {
     calendar.appendChild(d);
   });
 
-  for (let i = 0; i < firstDay; i++) calendar.innerHTML += '<div></div>';
+  for (let i = 0; i < firstDay; i++) {
+    calendar.innerHTML += '<div></div>';
+  }
 
   for (let day = 1; day <= lastDate; day++) {
     const dateStr = `${year}-${month + 1}-${day}`;
-    
-    // ✅ 오류 방지 로직 추가
+
+    // ✅ JSON.parse 오류 방지
     let saved = {};
     try {
-      saved = JSON.parse(localStorage.getItem(dateStr) || "{}");
+      const raw = localStorage.getItem(dateStr);
+      saved = JSON.parse(raw || "{}");
     } catch (e) {
-      console.warn("⚠️ JSON 파싱 오류:", localStorage.getItem(dateStr));
+      console.warn(`⚠️ JSON 파싱 실패: ${dateStr}`, localStorage.getItem(dateStr));
       localStorage.removeItem(dateStr);
     }
 
@@ -56,12 +58,13 @@ function openSchedule(dateStr) {
   scheduleDate.innerText = dateStr;
   scheduleList.innerHTML = "";
 
-  // ✅ 오류 방지
+  // ✅ JSON.parse 오류 방지
   let data = {};
   try {
-    data = JSON.parse(localStorage.getItem(dateStr) || "{}");
+    const raw = localStorage.getItem(dateStr);
+    data = JSON.parse(raw || "{}");
   } catch (e) {
-    console.warn("⚠️ JSON 파싱 오류:", localStorage.getItem(dateStr));
+    console.warn(`⚠️ JSON 파싱 실패(openSchedule): ${dateStr}`);
     localStorage.removeItem(dateStr);
   }
 
@@ -72,10 +75,13 @@ function openSchedule(dateStr) {
     if (data[time]) {
       div.classList.add("time-filled");
       div.innerText = `${time} | ${data[time]}`;
-    } else div.innerText = `${time} |`;
+    } else {
+      div.innerText = `${time} |`;
+    }
     div.onclick = () => openTimeModal(time);
     scheduleList.appendChild(div);
   }
+
   schedulePanel.style.bottom = "0";
 }
 
@@ -92,12 +98,13 @@ function openTimeModal(time) {
   selectedTime = time;
   modalTime.innerText = `${selectedDate} / ${time}`;
 
-  // ✅ 오류 방지
+  // ✅ JSON.parse 오류 방지
   let stored = {};
   try {
-    stored = JSON.parse(localStorage.getItem(selectedDate) || "{}");
+    const raw = localStorage.getItem(selectedDate);
+    stored = JSON.parse(raw || "{}");
   } catch (e) {
-    console.warn("⚠️ JSON 파싱 오류:", localStorage.getItem(selectedDate));
+    console.warn(`⚠️ JSON 파싱 실패(openTimeModal): ${selectedDate}`);
     localStorage.removeItem(selectedDate);
   }
 
@@ -112,7 +119,8 @@ function closeTimeModal() {
 function saveTime() {
   let data = {};
   try {
-    data = JSON.parse(localStorage.getItem(selectedDate) || "{}");
+    const raw = localStorage.getItem(selectedDate);
+    data = JSON.parse(raw || "{}");
   } catch (e) {
     data = {};
   }
@@ -127,7 +135,8 @@ function saveTime() {
 function deleteTime() {
   let data = {};
   try {
-    data = JSON.parse(localStorage.getItem(selectedDate) || "{}");
+    const raw = localStorage.getItem(selectedDate);
+    data = JSON.parse(raw || "{}");
   } catch (e) {
     data = {};
   }
@@ -144,7 +153,9 @@ function prevMonth() {
   currentDate.setMonth(currentDate.getMonth() - 1);
   renderCalendar();
 }
+
 function nextMonth() {
   currentDate.setMonth(currentDate.getMonth() + 1);
   renderCalendar();
 }
+
