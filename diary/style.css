@@ -89,6 +89,16 @@ h1 {
   background-color: #1c2433;
 }
 
+/* ⭐ 과거 날짜는 기본 클릭 불가 */
+.day.disabled {
+  pointer-events: none;
+}
+
+/* ⭐ 하지만 이모지는 클릭을 허용해야 함 */
+.day.disabled .emoji {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
 
 .day .emoji {
   position: absolute;
