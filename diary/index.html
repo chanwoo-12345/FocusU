@@ -3,31 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FocusU - Diary</title>
-  <link rel="stylesheet" href="style.css">
+  <title>FocusU | Diary</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="https://emojicdn.elk.sh/🌙" alt="logo" />
-      <h1>FocusU - Diary</h1>
-    </header>
-    <div class="calendar-controls">
+  <main>
+    <header>🌙 FocusU - Diary</header>
+
+    <div class="nav">
       <button onclick="prevMonth()">◀</button>
       <span id="monthYear"></span>
       <button onclick="nextMonth()">▶</button>
     </div>
+
     <div id="calendar" class="calendar"></div>
-  </div>
+  </main>
 
   <div id="diaryModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
       <h2 id="modalDate"></h2>
       <textarea id="diaryInput" placeholder="오늘의 감정을 입력하세요..."></textarea>
       <div class="modal-buttons">
-      <button onclick="saveDiary()">저장</button>
-      <button onclick="deleteDiary()">삭제</button>
+        <button onclick="saveDiary()">저장</button>
+        <button onclick="deleteDiary()">삭제</button>
+        <button onclick="closeModal()">닫기</button>
       </div>
     </div>
   </div>
@@ -35,3 +34,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
