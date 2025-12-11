@@ -40,7 +40,7 @@ function renderCalendar() {
     const dateStr = `${year}-${month + 1}-${day}`;
     const diaryText = localStorage.getItem(dateStr);
     const hasDiary = diaryText && diaryText.trim() !== "";
-    const emoji = hasDiary ? '📘' : '';
+    const emoji = hasDiary ? '📖' : '';
 
     const dayDiv = document.createElement('div');
     dayDiv.className = 'day';
@@ -51,15 +51,13 @@ function renderCalendar() {
 
     const emojiEl = dayDiv.querySelector(".emoji");
 
-    // ------------------------------
     // 과거 날짜 처리
-    // ------------------------------
     if (dateObj < today) {
       dayDiv.classList.add('past-day');
       dayDiv.classList.add('disabled');
       dayDiv.onclick = null;
 
-      // ⭐ 과거라도 다이어리 작성된 경우 → 이모티콘 클릭하면 보기 가능
+      // 과거라도 다이어리 작성된 경우 → 이모티콘 클릭하면 보기 가능
       if (hasDiary) {
         emojiEl.style.cursor = "pointer";
         emojiEl.onclick = (e) => {
@@ -77,9 +75,7 @@ function renderCalendar() {
   }
 }
 
-// ------------------------------
 // 작성 가능한 모달 열기
-// ------------------------------
 function openWriteModal(dateStr) {
   selectedDate = dateStr;
   modalDate.innerText = `${dateStr}`;
@@ -91,9 +87,7 @@ function openWriteModal(dateStr) {
   diaryModal.style.display = "flex";
 }
 
-// ------------------------------
 // 읽기 전용 모달 (과거 작성된 일기 용)
-// ------------------------------
 function openReadOnlyModal(dateStr) {
   selectedDate = dateStr;
   modalDate.innerText = `${dateStr}`;
