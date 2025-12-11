@@ -1,16 +1,28 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(ellipse at center, #1e2a38 0%, #111927 100%);
-  color: #ffffff;
-  height: 100vh;
+  font-family: 'Pretendard', sans-serif;
+  background: linear-gradient(to bottom, #0f172a, #1e293b, #000000);
+  color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
+  min-height: 100vh;
+  padding: 2rem;
 }
 
-.container {
+main {
+  max-width: 600px;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+header {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: white;
   text-align: center;
+  margin: 2rem 0;
 }
 
 header img {
@@ -19,93 +31,74 @@ header img {
   margin-right: 8px;
 }
 
-h1 {
-  font-size: 2.2rem;
-  font-weight: bold;
-  margin: 0.5em 0 0.2em 0;
-  display: inline-block;
-}
-
-.calendar-controls {
-  margin-bottom: 20px;
-   display: flex;
+.nav {
+  display: flex;
   justify-content: center;
-  align-items: center; /* ⬅️ 이거 추가! */
-  gap: 10px; /* 간격도 좀 주면 좋아 */
-}
-.calendar-controls button {
-  background: none;         /* 배경 없애기 */
-  color: #ffffff;           /* 흰색 텍스트 */
-  border: none;             /* 테두리 제거 */
-  font-size: 1.5rem;        /* 글자 크기 조금 키움 */
-  margin: 0 8px;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.8rem 0 1rem 0;
 }
 
-.calendar-controls button:hover {
-  color: #3c4a63;           /* hover 시 연한 파란색으로 */
+.nav span {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  line-height: 1;
+  transition: 0.15s ease-in-out;
+}
+
+.nav button:hover {
+  transform: scale(1.15);
+  color: #e2e8f0;
 }
 
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  max-width: 700px;
-  margin: 0 auto;
+  gap: 0.5rem;
+}
+
+.weekday {
+  text-align: center;
+  opacity: 0.6;
+  font-weight: bold;
 }
 
 .day {
-  background-color: #2a3548;
-  border-radius: 10px;
-  padding: 10px;
-  min-height: 80px;
-  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1rem 0;
+  text-align: center;
+  border-radius: 0.8rem;
   cursor: pointer;
-  transition: 0.3s;
-  position: relative;
+  transition: 0.2s;
 }
 
 .day:hover {
-  background-color: #3c4a63;
+  background: rgba(255, 255, 255, 0.2);
 }
 
-
-.day .weekday {
-  display: block;
-  font-size: 0.8rem;
-  color: #90a4ae;
-  margin-bottom: 4px;
-}
-
-
-.day.disabled {
-  background-color: #1c2433;
-  color: #888;
-  cursor: not-allowed;
-}
-
-.day.disabled:hover {
-  background-color: #1c2433;
-}
-
-/* ⭐ 과거 날짜는 기본 클릭 불가 */
-.day.disabled {
+.past-day {
+  opacity: 0.3;
   pointer-events: none;
 }
 
-/* ⭐ 하지만 이모지는 클릭을 허용해야 함 */
-.day.disabled .emoji {
+.day .emoji {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  height: 1.2rem;
   pointer-events: auto !important;
   cursor: pointer;
-}
-
-.day .emoji {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.5rem;
 }
 
 .modal {
@@ -115,43 +108,76 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.45);
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 15px;
-  width: 400px;
-  max-width: 90%;
-  backdrop-filter: blur(10px);
-  color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  background: rgba(40, 50, 70, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 2rem;
+  border-radius: 1.2rem;
+  width: 420px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
 }
 
 textarea {
-  width: 93%;
-  height: 100px;
-  border-radius: 10px;
+  width: 90%;
+  height: 140px;
+  padding: 1rem;
   border: none;
-  padding: 10px;
+  border-radius: 1rem;
+  font-size: 1rem;
   resize: none;
-  margin: 10px auto;
+  margin: 1rem auto 0 auto;
   display: block;
-}
-
-button {
-  margin: 5px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-buttons button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal-buttons button:hover {
+  background: #e5e7eb;
+}
+
+.close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 0.4rem;
+  transition: 0.2s ease;
+  align-self: flex-end;
+}
+
+.close:hover {
+  color: rgba(255, 255, 255, 0.85);
+  transform: scale(1.1);
 }
