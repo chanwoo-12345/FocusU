@@ -11,58 +11,70 @@ const fortunes = [
   "오늘 하루 나 자신을 믿어보세요."
 ];
 
-// 카드 이미지 배열 (index 0~9과 fortunes 배열의 메시지 1:1 매칭)
+// 1:1 대응되는 앞면 이미지 경로 (이미지 파일명은 card1.png ~ card10.png 로 가정)
 const cardImages = [
-  "./assets/card1.png",
-  "./assets/card2.png",
-  "./assets/card3.png",
-  "./assets/card4.png",
-  "./assets/card5.png",
-  "./assets/card6.png",
-  "./assets/card7.png",
-  "./assets/card8.png",
-  "./assets/card9.png",
-  "./assets/card10.png"
+  './assets/card1.png',
+  './assets/card2.png',
+  './assets/card3.png',
+  './assets/card4.png',
+  './assets/card5.png',
+  './assets/card6.png',
+  './assets/card7.png',
+  './assets/card8.png',
+  './assets/card9.png',
+  './assets/card10.png'
 ];
 
-// 5개만 무작위로 고르고, 각각 메시지 index 포함
-const shuffledCards = [];
-const usedIndexes = new Set();
-while (shuffledCards.length < 5) {
-  const idx = Math.floor(Math.random() * fortunes.length);
-  if (!usedIndexes.has(idx)) {
-    usedIndexes.add(idx);
-    shuffledCards.push({ index: idx, image: cardImages[idx], message: fortunes[idx] });
-  }
-}
+// 무작위로 fortunes와 images를 섞은 뒤 5개 선택
+let selectedCards = []; // [{ fortune: "...", image: "..." }]
+let cardDrawn = false;
 
-// 페이지 로드 후 카드 요소에 뒷면 이미지와 데이터 속성 추가
-window.onload = () => {
-  const cardElements = document.querySelectorAll('.card');
-  cardElements.forEach((card, i) => {
-    if (shuffledCards[i]) {
-      card.dataset.index = shuffledCards[i].index;
-      card.dataset.image = shuffledCards[i].image;
-      card.dataset.message = shuffledCards[i].message;
-    }
+window.onload = function () {
+  const container = document.querySelector(".card-container");
+
+  // 섞기
+  const indices = [...Array(10).keys()]; // [0,1,...,9]
+  shuffle(indices);
+  const chosen = indices.slice(0, 5);
+
+  // 카드 5장 선택
+  selectedCards = chosen.map(i => ({
+    fortune: fortunes[i],
+    image: cardImages[i]
+  }));
+
+  // 카드 DOM 생성
+  container.innerHTML = "";
+  selectedCards.forEach((card, index) => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.style.backgroundImage = "url('background.png')"; // 뒷면
+    div.setAttribute("data-index", index);
+    div.onclick = () => drawCard(div, index);
+    container.appendChild(div);
   });
 };
 
-let cardDrawn = false;
-
-function drawCard(cardElement) {
-  if (cardDrawn) return; // 이미 뽑았으면 리턴
+// 카드 클릭 시 처리
+function drawCard(cardElement, index) {
+  if (cardDrawn) return;
   cardDrawn = true;
 
-  const img = cardElement.dataset.image;
-  const message = cardElement.dataset.message;
+  const selected = selectedCards[index];
 
-  // 앞면 이미지로 변경
+  // 카드 앞면 이미지로 변경 + 뒤집기 효과
   cardElement.classList.add('flipped');
-  cardElement.style.backgroundImage = `url('${img}')`;
+  cardElement.style.backgroundImage = `url('${selected.image}')`;
 
-  // 메시지 출력
-  const messageEl = document.getElementById("fortuneMessage");
-  messageEl.textContent = "💬 " + message;
+  // 운세 텍스트 표시
+  const message = document.getElementById("fortuneMessage");
+  message.textContent = "💬 " + selected.fortune;
 }
 
+// 배열 섞기 함수 (Fisher–Yates)
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
