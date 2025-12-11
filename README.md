@@ -47,7 +47,41 @@ FocusU는 단순하지만 강력한 기능들을 모아 당신의 **집중 루�
 
 ## 폴더 구조
 <pre>
-``` FocusU/ ├── diary/ │ ├── index.html │ ├── script.js │ └── style.css ├── fortune/ │ ├── index.html │ ├── script.js │ ├── style.css │ ├── background.png.png │ └── assets/ │ ├── card1.png │ ├── card2.png │ ├── card3.png │ ├── card4.png │ ├── card5.png │ ├── card6.png │ ├── card7.png │ ├── card8.png │ ├── card9.png │ └── card10.png ├── main/ │ ├── main.html │ └── style.css ├── study/ │ ├── index.html │ ├── study.js │ └── style.css ├── todo/ │ ├── index.html │ ├── script.js │ └── style.css ├── login.css ├── index.html └── README.md ```  
+FocusU/
+├── diary/
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+├── fortune/
+│   ├── index.html
+│   ├── script.js
+│   ├── style.css
+│   ├── background.png.png
+│   └── assets/
+│       ├── card1.png
+│       ├── card2.png
+│       ├── card3.png
+│       ├── card4.png
+│       ├── card5.png
+│       ├── card6.png
+│       ├── card7.png
+│       ├── card8.png
+│       ├── card9.png
+│       └── card10.png
+├── main/
+│   ├── main.html
+│   └── style.css
+├── study/
+│   ├── index.html
+│   ├── study.js
+│   └── style.css
+├── todo/
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+├── login.css
+├── index.html
+└── README.md   
 </pre>
 
 **본 프로젝트에 대한 느낀점**
