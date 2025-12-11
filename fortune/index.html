@@ -9,15 +9,14 @@
 <body>
   <main>
     <header>🌙 FocusU - Fortune</header>
-    <section class="card-container" id="cardContainer">
-      <div class="card" onclick="drawCard(this)"></div>
-      <div class="card" onclick="drawCard(this)"></div>
-      <div class="card" onclick="drawCard(this)"></div>
-      <div class="card" onclick="drawCard(this)"></div>
-      <div class="card" onclick="drawCard(this)"></div>
-    </section>
+
+    <!-- ✅ 카드들은 JS에서 자동으로 생성하므로 비워둠 -->
+    <section class="card-container" id="cardContainer"></section>
+
     <div class="fortune-message" id="fortuneMessage">✨ 운세를 뽑아보세요 ✨</div>
   </main>
+
+  <!-- ✅ script는 항상 body 맨 아래 -->
   <script src="script.js"></script>
 </body>
 </html>
