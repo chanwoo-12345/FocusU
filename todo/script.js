@@ -4,14 +4,19 @@ let currentDate = new Date();
 let selectedDate = null;
 let selectedTime = null;
 
+// localStorage 키 네임스페이스 분리
+function getTodoKey(dateStr) {
+  return `todo:${dateStr}`;
+}
+
 function renderCalendar() {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-  const today = new Date(); 
+  const today = new Date();
   today.setHours(0, 0, 0, 0);
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
-  
+
   calendar.innerHTML = '';
   monthYear.innerText = `${year}년 ${month + 1}월`;
 
@@ -28,14 +33,13 @@ function renderCalendar() {
 
   for (let day = 1; day <= lastDate; day++) {
     const dateStr = `${year}-${month + 1}-${day}`;
-
-    // ✅ JSON.parse 오류 방지
     let saved = {};
+
     try {
       const raw = localStorage.getItem(getTodoKey(dateStr));
       saved = JSON.parse(raw || "{}");
-    } catch (e) {      
-      localStorage.removeItem(dateStr);
+    } catch (e) {
+      localStorage.removeItem(getTodoKey(dateStr));
     }
 
     const div = document.createElement('div');
@@ -57,14 +61,13 @@ function openSchedule(dateStr) {
   scheduleDate.innerText = dateStr;
   scheduleList.innerHTML = "";
 
-  // ✅ JSON.parse 오류 방지
   let data = {};
   try {
-    const raw = localStorage.getItem(dateStr);
+    const raw = localStorage.getItem(getTodoKey(dateStr));
     data = JSON.parse(raw || "{}");
   } catch (e) {
     console.warn(`⚠️ JSON 파싱 실패(openSchedule): ${dateStr}`);
-    localStorage.removeItem(dateStr);
+    localStorage.removeItem(getTodoKey(dateStr));
   }
 
   for (let h = 0; h < 24; h++) {
@@ -97,14 +100,13 @@ function openTimeModal(time) {
   selectedTime = time;
   modalTime.innerText = `${selectedDate} / ${time}`;
 
-  // ✅ JSON.parse 오류 방지
   let stored = {};
   try {
-    const raw = localStorage.getItem(selectedDate);
+    const raw = localStorage.getItem(getTodoKey(selectedDate));
     stored = JSON.parse(raw || "{}");
   } catch (e) {
     console.warn(`⚠️ JSON 파싱 실패(openTimeModal): ${selectedDate}`);
-    localStorage.removeItem(selectedDate);
+    localStorage.removeItem(getTodoKey(selectedDate));
   }
 
   timeInput.value = stored[time] || "";
@@ -118,14 +120,14 @@ function closeTimeModal() {
 function saveTime() {
   let data = {};
   try {
-    const raw = localStorage.getItem(selectedDate);
+    const raw = localStorage.getItem(getTodoKey(selectedDate));
     data = JSON.parse(raw || "{}");
   } catch (e) {
     data = {};
   }
 
   data[selectedTime] = timeInput.value;
-  localStorage.setItem(selectedDate, JSON.stringify(data));
+  localStorage.setItem(getTodoKey(selectedDate), JSON.stringify(data));
   closeTimeModal();
   openSchedule(selectedDate);
   renderCalendar();
@@ -134,14 +136,14 @@ function saveTime() {
 function deleteTime() {
   let data = {};
   try {
-    const raw = localStorage.getItem(selectedDate);
+    const raw = localStorage.getItem(getTodoKey(selectedDate));
     data = JSON.parse(raw || "{}");
   } catch (e) {
     data = {};
   }
 
   delete data[selectedTime];
-  localStorage.setItem(selectedDate, JSON.stringify(data));
+  localStorage.setItem(getTodoKey(selectedDate), JSON.stringify(data));
   closeTimeModal();
   openSchedule(selectedDate);
   renderCalendar();
