@@ -3,16 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Todo | FocusU</title>
+  <title>FocusU | Diary</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main>
-    <header>🌙 FocusU - Todo</header>
-    <section class="card">
-      <div id="app">콘텐츠 로딩 중...</div>
-    </section>
+    <header>
+      <img src="moon.png" class="icon">
+      FocusU - ToDo
+    </header>
+
+    <div class="nav">
+      <button onclick="prevMonth()">◀</button>
+      <span id="monthYear"></span>
+      <button onclick="nextMonth()">▶</button>
+    </div>
+
+    <div id="calendar" class="calendar"></div>
   </main>
-  <script src="script.js"></script>
+
+  <div id="schedulePanel" class="schedule-panel">
+    <div class="schedule-header">
+      <span id="scheduleDate"></span>
+      <button class="close-btn" onclick="closeSchedule()">✕</button>
+    </div>
+
+    <div id="scheduleList" class="schedule-list"></div>
+  </div>
+
+  <div id="timeModal" class="time-modal">
+    <div class="modal-content">
+      <h3 id="modalTime"></h3>
+      <textarea id="timeInput" placeholder="할 일을 입력하세요."></textarea>
+      <div class="modal-buttons">
+        <button onclick="saveTime()">저장</button>
+        <button onclick="deleteTime()">삭제</button>
+        <button onclick="closeTimeModal()">닫기</button>
+      </div>
+    </div>
+  </div>
+
+<script src="script.js"></script>
 </body>
 </html>
