@@ -41,7 +41,12 @@ function renderCalendar() {
 
     const div = document.createElement('div');
     div.className = 'day';
-    div.innerHTML = `${day}<span class="emoji">${Object.keys(saved).length ? "📝" : ""}</span>`;
+    div.innerHTML = `
+  <span class="day-content">
+    ${day} ${Object.keys(saved).length ? "📝" : ""}
+  </span>
+`;
+
     div.onclick = () => openSchedule(dateStr);
     calendar.appendChild(div);
   }
