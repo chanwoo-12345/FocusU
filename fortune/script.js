@@ -48,7 +48,7 @@ window.onload = function () {
   selectedCards.forEach((card, index) => {
     const div = document.createElement("div");
     div.className = "card";
-    div.style.backgroundImage = "url('background.png')"; // 뒷면
+    div.style.backgroundImage = "url('background.png.png')"; // 뒷면
     div.setAttribute("data-index", index);
     div.onclick = () => drawCard(div, index);
     container.appendChild(div);
