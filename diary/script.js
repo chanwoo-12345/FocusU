@@ -97,7 +97,7 @@ function openReadOnlyModal(dateStr) {
 
   // 저장·삭제 버튼 숨김
   document.querySelector(".modal-buttons").style.display = "none";
-
+  document.querySelector(".modal-close").style.display = "block"; 
   diaryModal.style.display = "flex";
 }
 
