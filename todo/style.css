@@ -215,3 +215,14 @@ textarea {
   color: rgba(255, 255, 255, 0.85);
   transform: scale(1.1);
 }
+
+.logo-link {
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.logo-link:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
