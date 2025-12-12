@@ -84,6 +84,7 @@ function openWriteModal(dateStr) {
   diaryInput.readOnly = false;
 
   document.querySelector(".modal-buttons").style.display = "flex";
+  document.querySelector(".modal-close").style.display = "none"; // 작성모드에서는 x 표시 꺼지도록 설정함
   diaryModal.style.display = "flex";
 }
 
