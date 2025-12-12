@@ -102,3 +102,14 @@ header {
 .add-box button:hover {
   background: #93c5fd;
 }
+
+.logo-link {
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.logo-link:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
