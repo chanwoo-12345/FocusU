@@ -58,3 +58,13 @@ p {
   transform: translateY(-2px);
 }
 
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
